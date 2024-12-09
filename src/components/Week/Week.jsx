@@ -11,17 +11,11 @@ import { FreeMode, Navigation } from "swiper/modules";
 import { useGetMovieQuery } from "../../redux/api/movie-api";
 import not from "../../assets/not.jpg";
 import { Skeleton } from "@mui/material";
-import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { toggleFavourite } from "../../redux/slices/favouriteSlice";
 import { useTranslation } from "react-i18next";
-// import CustomPagination from "../Pagination/CustomPagination";
 
 const Week = () => {
   const {t} = useTranslation()
-  // const [page, setPage] = useState(1);
-  // const handleChange = (value) => {
-  //   setPage(value);
-  // };
   const dispatch = useDispatch()
   const favouriteItem = useSelector((state) => state.favourite.items);
   const handleFavourite = (fav) => {
@@ -82,14 +76,7 @@ const Week = () => {
               <SwiperSlide key={movie?.id}>
                 <div key={movie?.id}>
                   <div className={`w-full mb-3 relative`}>
-                    <div className="w-10 h-10 bg-red-person flex justify-center items-center rounded-full absolute right-2 top-2 cursor-pointer">
-                      {
-                        isInFavoutite(movie?.id) ?
-                        <BsBookmarkFill onClick={()=> handleFavourite(movie)} className="text-xl text-white"/>
-                        :
-                        <BsBookmark onClick={()=> handleFavourite(movie)} className="text-xl text-white"/>
-                      }
-                    </div>
+                    
                     {
                       movie ?
                       <Link to={`/movie/${movie.id}`}>
@@ -148,9 +135,6 @@ const Week = () => {
             }
           </Swiper>
         </div>
-        {/* <div className="flex justify-center mt-7 select-none">
-        <CustomPagination count={data?.total_pages > 500 ? 500 : data?.total_pages} animation='wave' variant="outlined" page={page} onChange={handleChange} isDarkMode={Mode} size={"large"}/>
-        </div> */}
       </div>
     </section>
   );
